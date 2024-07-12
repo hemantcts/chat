@@ -9,9 +9,13 @@ const io = socketIo(server, {
     cors: true
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+
+app.get('/', (req, res)=>{
+    res.send("hello world");
+})
 
 io.on('connection', (socket) => {
     socket.on('join room', (room) => {
